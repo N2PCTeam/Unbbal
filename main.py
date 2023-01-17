@@ -5,7 +5,7 @@ import datetime as dt
 import math
 import scipy.stats as stats
 
-api = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJYLUFwcC1SYXRlLUxpbWl0IjoiNTAwOjEwIiwiYWNjb3VudF9pZCI6IjE3NDUzMzQ1MzMiLCJhdXRoX2lkIjoiMiIsImV4cCI6MTY4NzI2NTIyOSwiaWF0IjoxNjcxNzEzMjI5LCJuYmYiOjE2NzE3MTMyMjksInNlcnZpY2VfaWQiOiI0MzAwMTEzOTciLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4ifQ.0RhrmXdAqXJLyiKU51XvmSpASpanZmbkkPaQ4-GzGeg"
+api = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJYLUFwcC1SYXRlLUxpbWl0IjoiNTAwOjEwIiwiYWNjb3VudF9pZCI6IjIwOTc0NzA1NDciLCJhdXRoX2lkIjoiMiIsImV4cCI6MTY4NzA2NjI4MiwiaWF0IjoxNjcxNTE0MjgyLCJuYmYiOjE2NzE1MTQyODIsInNlcnZpY2VfaWQiOiI0MzAwMTEzOTciLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4ifQ.Oq2FtkLydQBlNAg3p8RXCTszi_SQ1HEvpNhZky9_XXk2"
 count = 1000
 date = "2022-12-18"
 cursor = ""
@@ -52,13 +52,13 @@ while fdate>=sdate:
             if data['cube_histories'][i]['item_upgrade_result'] == "성공":
                 ds = 1
             if data['cube_histories'][i]['miracle_time_flag'] != "이벤트 적용되지 않음":
-                dj = 4
+                dj = 3
             for j in range(0,5):
                 if cube == c[j]:
                     for k in range(0,m[j]):
                         if potential == o[k]:
-                            t[k][j+dj]+=1
-                            s[k][j+dj]+=ds
+                            t[k+dj][j]+=1
+                            s[k+dj][j]+=ds
             for k in range(0,2):
                 if cube == c[k+1] and data['cube_histories'][i]['potential_option_grade'] == o[3]:
                     for j in range(0,len(e)):
@@ -96,12 +96,12 @@ while fdate>=sdate:
 result = 0
 tsum = 0
 for i in range(0,5):
-    #print(c[i])
+    print(c[i])
     for j in range(0,6):
         if t[j][i] > 0 :
-            #print(o[j+1])
+            print(o[j+1])
             fun=stats.norm(cp[j][i]*t[j][i]/100,(cp[j][i]*t[j][i]/100*(1-cp[j][i]/100))**(1/2))
-            #print(100-fun.cdf(s[j][i])*100)
+            print(100-fun.cdf(s[j][i])*100)
             tsum += t[j][i]
             result += (100-fun.cdf(s[j][i])*100)*t[j][i]
 result2 = 0
