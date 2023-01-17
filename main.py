@@ -78,7 +78,7 @@ while fdate>=sdate:
                             for l in range(0,len(af_po)):
                                 escape = 1
                                 for x in range(0,len(eu[job][j])):
-                                    if af_po[l]['value'].find(u[eu[job][j][x]]) :
+                                    if af_po[l]['value'].find(u[eu[job][j][x]]) == 0 :
                                         escape = 0
                                         break
                                 if escape : break
@@ -96,12 +96,12 @@ while fdate>=sdate:
 result = 0
 tsum = 0
 for i in range(0,5):
-    print(c[i])
+    #print(c[i])
     for j in range(0,6):
         if t[j][i] > 0 :
-            print(o[j+1])
+            #print(o[j+1])
             fun=stats.norm(cp[j][i]*t[j][i]/100,(cp[j][i]*t[j][i]/100*(1-cp[j][i]/100))**(1/2))
-            print(100-fun.cdf(s[j][i])*100)
+            #print(100-fun.cdf(s[j][i])*100)
             tsum += t[j][i]
             result += (100-fun.cdf(s[j][i])*100)*t[j][i]
 result2 = 0
@@ -112,5 +112,6 @@ for i in range(0,1):
             sum+=et[i][j]
             fun=stats.norm(ep[i][j]*et[i][j]/100,(ep[i][j]*et[i][j]/100*(1-ep[i][j]/100))**(1/2))
             result2 += (100-fun.cdf(es[i][j])*100)*et[i][j]
+            #print(100-fun.cdf(es[i][j])*100)
 if tsum > 0 : print(result/tsum)
 if sum > 0 : print(result2/sum)
