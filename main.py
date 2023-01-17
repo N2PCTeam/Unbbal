@@ -59,8 +59,8 @@ while fdate>=sdate:
                         if potential == o[k]:
                             t[k][j+dj]+=1
                             s[k][j+dj]+=ds
-            for k in range(0,1):
-                if cube == c[k] and data['cube_histories'][i]['potential_option_grade'] == o[3]:
+            for k in range(0,2):
+                if cube == c[k+1] and data['cube_histories'][i]['potential_option_grade'] == o[3]:
                     for j in range(0,len(e)):
                         if data['cube_histories'][i]['item_equip_part'] == e[j] :
                             et[k][j] += 1
@@ -75,10 +75,10 @@ while fdate>=sdate:
                             if item.find("던위치") >= 0 or item.find("메이지") >= 0 :
                                 job = 3
                             af_po = data['cube_histories'][i]['after_potential_options']
-                            for l in range(0,af_po.size()):
+                            for l in range(0,len(af_po)):
                                 escape = 1
-                                for x in range(0,eu[job][j].size()):
-                                    if af_po[l]['value'].find(eu[job][j][x]) :
+                                for x in range(0,len(eu[job][j])):
+                                    if af_po[l]['value'].find(u[eu[job][j][x]]) :
                                         escape = 0
                                         break
                                 if escape : break
